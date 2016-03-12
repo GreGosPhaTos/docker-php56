@@ -1,0 +1,21 @@
+version: '2'
+services:
+  web:
+    build: ./php
+    command: php -S 0.0.0.0:8000 -t /code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./www:/code
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=mydatabase
+      - MYSQL_ROOT_PASSWORD=mypassword
+  redis:
+    image: redis 
