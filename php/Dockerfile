@@ -1,5 +1,4 @@
 FROM php:5.6-fpm
-#FROM jolicode/php56
 
 RUN apt-get update && apt-get install -y \
         libfreetype6-dev \
@@ -29,10 +28,6 @@ RUN curl -L -o /tmp/redis.tar.gz https://github.com/phpredis/phpredis/archive/$P
     && rm -r /tmp/redis.tar.gz \
     && mv phpredis-$PHPREDIS_VERSION /usr/src/php/ext/redis \
     && docker-php-ext-install redis
-
-#RUN pecl install -o -f redis \
-#    &&  rm -rf /tmp/pear \
-#    &&  echo "extension=redis.so" > /home/.phpenv/versions/5.6.2/etc/conf.d/redis.ini \
 
 ADD . /code
 
