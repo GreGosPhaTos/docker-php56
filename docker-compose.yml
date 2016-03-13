@@ -8,6 +8,7 @@ services:
     depends_on:
       - db
       - redis
+      - elasticsearch
     volumes:
       - ./www:/code
   db:
@@ -17,5 +18,12 @@ services:
     environment:
       - MYSQL_DATABASE=mydatabase
       - MYSQL_ROOT_PASSWORD=mypassword
+
   redis:
     image: redis 
+
+  elasticsearch:
+    build: ./elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
